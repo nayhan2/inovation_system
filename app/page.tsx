@@ -196,7 +196,7 @@ export default function HomePage() {
                   className="rounded-xl shadow-lg w-full h-[280px] object-cover object-center"
                 />
               </div>
-              <div className="text-left flex-1 max-w-md">
+              <div className="text-left flex-1 max-w-md md:px-0 px-4">
                 <h3 className="text-2xl font-bold mb-3 text-blue-700">
                   {current.title}
                 </h3>
@@ -212,7 +212,7 @@ export default function HomePage() {
       {/* BENEFIT SECTION */}
       <section className="grid md:grid-cols-2 text-white">
         <div
-          className="relative min-h-[400px] p-12 md:p-40 px-20 flex flex-col justify-center bg-cover bg-center"
+          className="relative min-h-[400px] p-12 md:p-40 px-12 flex flex-col justify-center bg-cover bg-center"
           style={{
             backgroundImage:
               "url(https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=1200&q=80)",
