@@ -31,7 +31,8 @@ const featuredDestinations = [
     id: 1,
     name: "Puncak Gunung Rinjani",
     type: "Drone 4K",
-    description: "Rasakan kebebasan terbang di atas kaldera paling ikonik di Indonesia.",
+    description:
+      "Rasakan kebebasan terbang di atas kaldera paling ikonik di Indonesia.",
     image:
       "https://images.unsplash.com/photo-1542456381-8079a40954b9?auto=format&fit=crop&w=600&q=80",
   },
@@ -39,7 +40,8 @@ const featuredDestinations = [
     id: 2,
     name: "Jalanan Kota Tua Jakarta",
     type: "Robot Roda Interaktif",
-    description: "Susuri arsitektur bersejarah dan hiruk pikuk kota tanpa harus berada di sana.",
+    description:
+      "Susuri arsitektur bersejarah dan hiruk pikuk kota tanpa harus berada di sana.",
     image:
       "https://images.unsplash.com/photo-1581451000632-132d43e597c5?auto=format&fit=crop&w=600&q=80",
   },
@@ -47,7 +49,8 @@ const featuredDestinations = [
     id: 3,
     name: "Pantai Raja Ampat",
     type: "Drone Bawah Air",
-    description: "Jelajahi keindahan biota laut dan terumbu karang yang menakjubkan secara langsung.",
+    description:
+      "Jelajahi keindahan biota laut dan terumbu karang yang menakjubkan secara langsung.",
     image:
       "https://images.unsplash.com/photo-1620023671295-886f4a2108b5?auto=format&fit=crop&w=600&q=80",
   },
@@ -356,9 +359,7 @@ export default function HomePage() {
                 <h3 className="text-2xl font-bold mb-3 text-blue-700">
                   {current.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {current.text}
-                </p>
+                <p className="text-gray-600 leading-relaxed">{current.text}</p>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -396,7 +397,11 @@ export default function HomePage() {
                 key={destin.id}
                 variants={itemVariants}
                 className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
-                whileHover={cardHoverEffect}
+                whileHover={{
+                    scale: 1.05,
+                    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+                    transition: { type: "spring", stiffness: 300 },
+                  }}
               >
                 <div className="relative h-48 overflow-hidden">
                   <motion.img
@@ -456,8 +461,8 @@ export default function HomePage() {
               Ketenangan Instan, Tanpa Batas.
             </h3>
             <p className="text-lg text-gray-200 max-w-lg">
-              Lawan burnout dengan mengakses pemandangan alam paling
-              menenangkan di dunia, langsung dari layar Anda.
+              Lawan burnout dengan mengakses pemandangan alam paling menenangkan
+              di dunia, langsung dari layar Anda.
             </p>
           </motion.div>
         </div>
@@ -677,7 +682,9 @@ export default function HomePage() {
             </div>
             <div className="text-center">
               <p className="text-3xl">🥽</p>
-              <p className="mt-2 text-sm font-semibold">EXTENDED REALITY (XR)</p>
+              <p className="mt-2 text-sm font-semibold">
+                EXTENDED REALITY (XR)
+              </p>
             </div>
             <div className="text-center">
               <p className="text-3xl">📡</p>
