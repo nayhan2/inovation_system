@@ -242,7 +242,7 @@ export default function HomePage() {
               "url(https://images.unsplash.com/photo-1522448723933-10871d143586?auto=format&fit=crop&w=1200&q=80)",
           }}
         >
-          <div className="absolute inset-0 "></div>
+          <div className="absolute inset-0 bg-black opacity-10 "></div>
           <motion.div
             className="relative z-10"
             initial={{ opacity: 0, x: 30 }}
