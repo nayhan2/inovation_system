@@ -4,8 +4,17 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// Anda mungkin perlu menginstal react-icons: npm install react-icons
-import { FiCpu, FiUsers, FiDollarSign, FiUploadCloud } from "react-icons/fi";
+// Tambahan ikon untuk FAQ dan Cara Kerjanya
+import {
+  FiCpu,
+  FiUsers,
+  FiDollarSign,
+  FiUploadCloud,
+  FiMapPin, // Ikon untuk Destinasi Unggulan
+  FiZap, // Ikon untuk Kecepatan / Kontrol
+  FiGlobe, // Ikon untuk Pilih Destinasi
+  FiChevronDown, // Ikon untuk FAQ
+} from "react-icons/fi";
 
 // [FIX] Definisi tipe yang hilang ditambahkan kembali di sini
 type SolutionKey = "drone" | "robot" | "humanoid";
@@ -16,8 +25,56 @@ interface Solution {
   image: string;
 }
 
+// Data Destinasi Unggulan
+const featuredDestinations = [
+  {
+    id: 1,
+    name: "Puncak Gunung Rinjani",
+    type: "Drone 4K",
+    description: "Rasakan kebebasan terbang di atas kaldera paling ikonik di Indonesia.",
+    image:
+      "https://images.unsplash.com/photo-1542456381-8079a40954b9?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 2,
+    name: "Jalanan Kota Tua Jakarta",
+    type: "Robot Roda Interaktif",
+    description: "Susuri arsitektur bersejarah dan hiruk pikuk kota tanpa harus berada di sana.",
+    image:
+      "https://images.unsplash.com/photo-1581451000632-132d43e597c5?auto=format&fit=crop&w=600&q=80",
+  },
+  {
+    id: 3,
+    name: "Pantai Raja Ampat",
+    type: "Drone Bawah Air",
+    description: "Jelajahi keindahan biota laut dan terumbu karang yang menakjubkan secara langsung.",
+    image:
+      "https://images.unsplash.com/photo-1620023671295-886f4a2108b5?auto=format&fit=crop&w=600&q=80",
+  },
+];
+
+// Data FAQ
+const faqData = [
+  {
+    question: "Apakah ini real-time atau rekaman video?",
+    answer:
+      "Ini adalah pengalaman **real-time** sepenuhnya. Anda mengirimkan perintah kontrol (misalnya: maju, belok) ke perangkat fisik di lokasi, dan menerima umpan balik video serta kontrol latensi rendah secara langsung.",
+  },
+  {
+    question: "Koneksi internet seperti apa yang saya butuhkan?",
+    answer:
+      "Untuk pengalaman terbaik, kami merekomendasikan koneksi broadband minimal **10 Mbps** dengan latensi rendah (di bawah 100ms). Latensi sangat penting untuk kontrol yang responsif.",
+  },
+  {
+    question: "Bagaimana cara mendaftar sebagai Host (pemilik drone/robot)?",
+    answer:
+      "Cukup klik tombol **'Jadi Host & Hasilkan Uang'** dan ikuti proses verifikasi aset Anda. Kami akan menyediakan perangkat lunak yang diperlukan untuk menghubungkan perangkat Anda ke platform Intelecta.",
+  },
+];
+
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<SolutionKey>("drone");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const solutions: Record<SolutionKey, Solution> = {
     drone: {
@@ -42,6 +99,10 @@ export default function HomePage() {
 
   const current = solutions[activeTab];
 
+  // =========================================================================
+  // ANIMATION VARIANTS
+  // =========================================================================
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -57,9 +118,20 @@ export default function HomePage() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
+  const cardHoverEffect = {
+    scale: 1.05,
+    boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+    transition: { type: "spring", stiffness: 300 },
+  };
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
   return (
     <main className="bg-white text-gray-800">
       {/* HERO SECTION */}
+      {/* (Tidak ada perubahan pada Hero Section) */}
       <header className="relative flex flex-col items-center justify-center text-center py-24 px-6 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
         <motion.div
           className="relative z-10 max-w-3xl"
@@ -88,7 +160,7 @@ export default function HomePage() {
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
             <motion.a
-              href="#"
+              href="#how-it-works"
               className="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition shadow-lg hover:shadow-blue-300"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -96,7 +168,7 @@ export default function HomePage() {
               Lihat Cara Kerjanya
             </motion.a>
             <motion.a
-              href="#"
+              href="#destinations"
               className="border border-blue-600 text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -108,6 +180,7 @@ export default function HomePage() {
       </header>
 
       {/* PROBLEM SECTION */}
+      {/* (Tidak ada perubahan pada Problem Section) */}
       <section className="py-20 px-6 bg-gray-50">
         <h2 className="text-3xl font-bold text-center mb-12">
           Dunia Terasa Jauh, Ketenangan Sulit Dicari.
@@ -149,8 +222,93 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* --- SEKSI BARU: CARA KERJANYA (HOW IT WORKS) --- */}
+      <section id="how-it-works" className="py-20 px-6 bg-white text-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl font-bold mb-4"
+          >
+            Sangat Mudah. Hanya 3 Langkah untuk Mencapai Ketenangan.
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="max-w-3xl mx-auto text-gray-600 mb-16"
+          >
+            Rasakan keajaiban tele-presence murni, tanpa aplikasi rumit, hanya
+            melalui browser Anda.
+          </motion.p>
+
+          <div className="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto relative">
+            {/* Animasi Garis Penghubung (Hanya untuk tampilan desktop) */}
+            <motion.div
+              className="hidden md:block absolute top-10 w-full h-1"
+              style={{ padding: "0 10rem" }} // Jarak padding untuk memulai/mengakhiri garis
+            >
+              <motion.svg
+                width="100%"
+                height="8"
+                viewBox="0 0 100 8"
+                preserveAspectRatio="none"
+                className="stroke-blue-200"
+              >
+                <motion.line
+                  x1="0"
+                  y1="4"
+                  x2="100"
+                  y2="4"
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                />
+              </motion.svg>
+            </motion.div>
+
+            {/* Steps */}
+            {[
+              {
+                icon: <FiGlobe className="text-4xl text-blue-600" />,
+                title: "Pilih Destinasi",
+                text: "Jelajahi galeri kami dan pilih pemandangan yang Anda impikan, dari pegunungan hingga dasar laut.",
+              },
+              {
+                icon: <FiCpu className="text-4xl text-blue-600" />,
+                title: "Ambil Kendali",
+                text: "Segera terhubung dengan robot atau drone. Antarmuka kontrol yang intuitif siap di ujung jari Anda.",
+              },
+              {
+                icon: <FiZap className="text-4xl text-blue-600" />,
+                title: "Rasakan Real-Time",
+                text: "Nikmati streaming latensi rendah dan rasakan ketenangan sejati, seolah-olah Anda berada di sana.",
+              },
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="flex flex-col items-center text-center p-6 md:w-1/3 z-10 bg-white"
+              >
+                <div className="bg-blue-100 p-6 rounded-full shadow-lg border-4 border-white mb-4">
+                  {step.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                <p className="text-gray-600">{step.text}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* SOLUTION SECTION */}
-      <section className="py-20 px-6 bg-white text-center">
+      {/* (Tetap di sini, karena Cara Kerjanya membantu menjelaskan Solusi) */}
+      <section className="py-20 px-6 bg-gray-50 text-center">
         <h2 className="text-3xl font-bold mb-4">
           Teknologi yang Menyatukan Dunia Anda.
         </h2>
@@ -160,21 +318,19 @@ export default function HomePage() {
         </p>
 
         <div className="flex justify-center gap-2 md:gap-3 mb-8">
-          {[
-            { id: "drone", label: "Drone ✈️" },
-            { id: "robot", label: "Robot Roda 🤖" },
-            { id: "humanoid", label: "Humanoid 🦾" },
-          ].map((tab) => (
+          {["drone", "robot", "humanoid"].map((tab) => (
             <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as SolutionKey)}
+              key={tab}
+              onClick={() => setActiveTab(tab as SolutionKey)}
               className={`px-5 py-2 rounded-full font-medium transition-colors duration-300 md:text-lg text-sm ${
-                activeTab === tab.id
+                activeTab === tab
                   ? "bg-blue-600 text-white shadow-md"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
-              {tab.label}
+              {tab === "drone" && "Drone ✈️"}
+              {tab === "robot" && "Robot Roda 🤖"}
+              {tab === "humanoid" && "Humanoid 🦾"}
             </button>
           ))}
         </div>
@@ -209,7 +365,77 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* --- SEKSI BARU: DESTINASI UNGGULAN --- */}
+      <section id="destinations" className="py-20 px-6 bg-white text-center">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl font-bold mb-4"
+          >
+            Rasakan Ketenangan dari Destinasi Pilihan Dunia.
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="max-w-3xl mx-auto text-gray-600 mb-12"
+          >
+            Pemandangan alam yang paling menenangkan dan lokasi urban paling
+            eksotis, siap Anda kendalikan saat ini juga.
+          </motion.p>
+
+          <motion.div
+            className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            variants={containerVariants}
+          >
+            {featuredDestinations.map((destin, index) => (
+              <motion.div
+                key={destin.id}
+                variants={itemVariants}
+                className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+                whileHover={cardHoverEffect}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <motion.img
+                    src={destin.image}
+                    alt={destin.name}
+                    className="w-full h-full object-cover"
+                    variants={{
+                      rest: { scale: 1 },
+                      hover: { scale: 1.1, transition: { duration: 0.8 } },
+                    }}
+                    initial="rest"
+                    whileHover="hover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-end p-4">
+                    <span className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                      {destin.type}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6 text-left">
+                  <h3 className="text-xl font-bold mb-2 flex items-center">
+                    <FiMapPin className="text-blue-500 mr-2" /> {destin.name}
+                  </h3>
+                  <p className="text-gray-600 mb-4">{destin.description}</p>
+                  <a
+                    href="#"
+                    className="text-blue-600 font-semibold hover:text-blue-800 transition-colors"
+                  >
+                    Jelajahi Sekarang &rarr;
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </section>
+
       {/* BENEFIT SECTION */}
+      {/* (Tidak ada perubahan pada Benefit Section) */}
       <section className="grid md:grid-cols-2 text-white">
         <div
           className="relative min-h-[400px] p-12 md:p-40 px-12 flex flex-col justify-center bg-cover bg-center"
@@ -262,6 +488,7 @@ export default function HomePage() {
       </section>
 
       {/* BUSINESS MODEL SECTION */}
+      {/* (Tidak ada perubahan pada Business Model Section) */}
       <section className="py-24 px-6 bg-gray-50 text-center">
         <motion.div
           initial="hidden"
@@ -356,7 +583,62 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* --- SEKSI BARU: FAQ (TANYA JAWAB) --- */}
+      <section id="faq" className="py-20 px-6 bg-white">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+          className="max-w-4xl mx-auto"
+        >
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Pertanyaan yang Sering Diajukan
+          </motion.h2>
+
+          <div className="space-y-4">
+            {faqData.map((item, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="flex justify-between items-center w-full p-5 text-lg font-semibold text-left text-gray-800 hover:bg-gray-100 transition-colors"
+                >
+                  {item.question}
+                  <motion.span
+                    animate={{ rotate: openFaq === index ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <FiChevronDown className="w-6 h-6 text-blue-600" />
+                  </motion.span>
+                </button>
+                <AnimatePresence>
+                  {openFaq === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="px-5 pb-5 text-gray-600"
+                    >
+                      <p>{item.answer}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* VISION SECTION */}
+      {/* (Tidak ada perubahan pada Vision Section) */}
       <section
         className="py-24 px-6 text-center text-white bg-gray-900 bg-cover bg-center"
         style={{
@@ -408,6 +690,7 @@ export default function HomePage() {
       </section>
 
       {/* FOOTER */}
+      {/* (Tidak ada perubahan pada Footer) */}
       <footer className="bg-gray-900 border-t border-gray-800 text-gray-400 py-10 text-center">
         <motion.div
           initial={{ opacity: 0 }}
