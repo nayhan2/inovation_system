@@ -159,7 +159,7 @@ export default function HomePage() {
           nyata secara langsung untuk pengalaman yang otentik.
         </p>
 
-        <div className="flex justify-center gap-3 mb-8">
+        <div className="flex justify-center gap-2 md:gap-3 mb-8">
           {[
             { id: "drone", label: "Drone ✈️" },
             { id: "robot", label: "Robot Roda 🤖" },
@@ -168,7 +168,7 @@ export default function HomePage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as SolutionKey)}
-              className={`px-5 py-2 rounded-full font-medium transition-colors duration-300 ${
+              className={`px-5 py-2 rounded-full font-medium transition-colors duration-300 md:text-lg text-sm ${
                 activeTab === tab.id
                   ? "bg-blue-600 text-white shadow-md"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
