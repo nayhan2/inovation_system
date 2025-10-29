@@ -29,14 +29,14 @@ export default function HomePage() {
       text: "Jadilah penjelajah urban. Kendalikan robot kami yang lincah untuk menyusuri jalanan kota bersejarah, taman yang asri, atau pantai yang eksotis secara langsung.",
       // Gambar yang lebih kontekstual: Robot di lingkungan nyata
       image:
-        "https://images.unsplash.com/photo-1678452301918-7b4d375a9d22?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?auto=format&fit=crop&w=1200&q=80",
     },
     humanoid: {
       title: "Sentuh Dunia Nyata (Visi)",
       text: "Inilah puncak pengalaman tele-presence. Rasakan sensasi berinteraksi dengan lingkungan melalui mata dan tangan avatar humanoid kami.",
       // Gambar yang lebih futuristik & humanis
       image:
-        "https://images.unsplash.com/photo-1554117972-4e2a87c10b2a?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?auto=format&fit=crop&w=1200&q=80",
     },
   };
 
