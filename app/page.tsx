@@ -1,5 +1,44 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+type SolutionKey = "drone" | "robot" | "humanoid";
+
+interface Solution {
+  title: string;
+  text: string;
+  image: string;
+}
+
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState<SolutionKey>("drone");
+
+  const solutions: Record<SolutionKey, Solution> = {
+    drone: {
+      title: "Drone",
+      text: "Kendalikan drone untuk panorama udara dan cityscape yang mustahil diakses manusia.",
+      image:
+        "https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=1200&q=80",
+    },
+    robot: {
+      title: "Robot Roda",
+      text: "Eksplorasi area wisata dan lingkungan urban melalui robot roda yang dikendalikan jarak jauh secara real-time.",
+      image:
+        "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=1200&q=80",
+    },
+    humanoid: {
+      title: "Humanoid (Visi)",
+      text: "Menghadirkan pengalaman paling imersif—mengontrol humanoid nyata untuk berinteraksi dengan dunia sekitar.",
+      image:
+        "https://images.unsplash.com/photo-1581092334641-15e81b50c9b4?auto=format&fit=crop&w=1200&q=80",
+    },
+  };
+
+  const current = solutions[activeTab];
+
   return (
     <main className="bg-white text-gray-800">
       {/* HERO SECTION */}
@@ -45,17 +84,17 @@ export default function HomePage() {
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
             {
-              icon: "[Ikon: Stres]",
+              icon: "💆‍♀️",
               title: "Krisis Burnout Global",
-              text: "WHO mengakui burnout sebagai fenomena pekerjaan global. Kebutuhan akan ketenangan jiwa (peace to the soul) sangat tinggi.",
+              text: "WHO mengakui burnout sebagai fenomena pekerjaan global. Kebutuhan akan ketenangan jiwa sangat tinggi.",
             },
             {
-              icon: "[Ikon: Biaya/Waktu]",
+              icon: "💸",
               title: "Liburan Tidak Terjangkau",
               text: "Solusi tradisional seperti liburan fisik terhalang oleh biaya, waktu, dan logistik yang rumit.",
             },
             {
-              icon: "[Ikon: Lansia/Difabel]",
+              icon: "♿",
               title: "Keterbatasan Mobilitas",
               text: "Jutaan lansia dan penyandang disabilitas mendambakan eksplorasi dunia namun terhalang secara fisik.",
             },
@@ -64,7 +103,7 @@ export default function HomePage() {
               key={idx}
               className="bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition"
             >
-              <div className="text-gray-400 mb-2">{item.icon}</div>
+              <div className="text-3xl mb-3">{item.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-gray-600">{item.text}</p>
             </div>
@@ -82,25 +121,51 @@ export default function HomePage() {
           simulasi. Anda mengontrol aset fisik secara real-time.
         </p>
 
-        <div className="flex justify-center gap-4 mb-8">
-          <div className="px-4 py-2 bg-blue-600 text-white rounded-lg">
-            [ Drone ]
-          </div>
-          <div className="px-4 py-2 border rounded-lg">[ Robot Roda ]</div>
-          <div className="px-4 py-2 border rounded-lg">[ Humanoid (Visi) ]</div>
+        {/* Tabs */}
+        <div className="flex justify-center gap-3 mb-8">
+          {[
+            { id: "drone", label: "Drone" },
+            { id: "robot", label: "Robot Roda" },
+            { id: "humanoid", label: "Humanoid (Visi)" },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as SolutionKey)}
+              className={`px-4 py-2  rounded-lg font-medium transition ${
+                activeTab === tab.id
+                  ? "bg-blue-600 text-white"
+                  : "border border-gray-300 hover:bg-gray-100"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-          <div className="bg-gray-100 p-8 rounded-xl flex-1">
-            <p>[Visual: Video pemandangan kota dari atas]</p>
-          </div>
-          <div className="text-left flex-1">
-            <h3 className="text-2xl font-semibold mb-2">Drone</h3>
-            <p className="text-gray-600">
-              Kendalikan drone untuk panorama udara dan cityscape yang mustahil
-              diakses manusia.
-            </p>
-          </div>
+        {/* Animated Content */}
+        <div className="flex flex-col md:flex-row items-center justify-center md:gap-4 gap-6 max-w-5xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="flex flex-col md:flex-row items-center justify-center md:gap-12 gap-8 w-full"
+            >
+              <div className="flex-1 max-w-md">
+                <img
+                  src={current.image}
+                  alt={current.title}
+                  className="rounded-xl shadow-md w-full h-[280px] object-cover object-center"
+                />
+              </div>
+              <div className="text-left flex-1 max-w-md">
+                <h3 className="text-2xl font-semibold mb-2">{current.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{current.text}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
@@ -110,8 +175,8 @@ export default function HomePage() {
           <div>
             <h3 className="text-2xl font-bold mb-2">Demokratisasi Healing</h3>
             <p className="text-blue-100">
-              Dapatkan solusi healing instan, terapeutik, dan efektif untuk
-              mengurangi stres dan burnout, kapanpun Anda butuhkan.
+              Dapatkan solusi healing instan dan efektif untuk mengurangi stres
+              dan burnout, kapanpun Anda butuhkan.
             </p>
           </div>
         </div>
@@ -119,7 +184,7 @@ export default function HomePage() {
           <div>
             <h3 className="text-2xl font-bold mb-2">Inklusivitas Penuh</h3>
             <p className="text-gray-300">
-              Memberikan kebebasan eksplorasi penuh bagi individu yang memiliki
+              Memberikan kebebasan eksplorasi penuh bagi individu dengan
               keterbatasan fisik melalui Tele-Presence Humanoid.
             </p>
           </div>
