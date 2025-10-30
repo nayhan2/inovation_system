@@ -9,10 +9,17 @@ export const metadata = {
   description: "Platform Meta-Tourism Real-Time pertama di dunia",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="id">
-      <body className={`${roboto.className} bg-[#0A192F] text-white`}>
+      <body
+        suppressHydrationWarning={true}
+        className={`${roboto.className} bg-[#0A192F] text-white`}
+      >
         {children}
       </body>
     </html>
