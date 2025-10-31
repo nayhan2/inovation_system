@@ -31,23 +31,29 @@ import { Footer } from "@/components/shared/Footer";
 // =========================================================================
 
 const solutionsData: Record<SolutionKey, Solution> = {
+  vr: {
+    title: "Rasakan Dunia Virtual",
+    text: "Masuki dunia virtual yang memukau dengan teknologi VR canggih kami. Jelajahi lingkungan 3D yang dirancang dengan detail tinggi, berinteraksi dengan objek, dan alami sensasi kehadiran seolah-olah Anda benar-benar ada di sana.",
+    image:
+      "https://images.unsplash.com/photo-1706990769341-d450bb0c52b7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1974",
+  },  
   drone: {
     title: "Jelajahi Langit",
     text: "Ambil alih kemudi drone dan saksikan keindahan dunia dari perspektif mata burung yang memukau. Rasakan kebebasan terbang di atas pegunungan dan kota-kota ikonik.",
     image:
-      "https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1646578310211-2b43b1196995?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
   },
   robot: {
     title: "Susuri Jalanan Dunia",
     text: "Jadilah penjelajah urban. Kendalikan robot kami yang lincah untuk menyusuri jalanan kota bersejarah, taman yang asri, atau pantai yang eksotis secara langsung.",
     image:
-      "https://images.unsplash.com/photo-1678452301918-7b4d375a9d22?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1641309623097-c305ba71ec7d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171",
   },
   humanoid: {
     title: "Sentuh Dunia Nyata (Visi)",
     text: "Inilah puncak pengalaman tele-presence. Rasakan sensasi berinteraksi dengan lingkungan melalui mata dan tangan avatar humanoid kami.",
     image:
-      "https://images.unsplash.com/photo-1554117972-4e2a87c10b2a?auto=format&fit=crop&w=1200&q=80",
+      "https://www.1x.tech/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fqka6yvsc%2Fproduction%2F8353aa0348b725209afd88990b7d51ca050176e2-4096x2730.jpg&w=1080&q=90 ",
   },
 };
 
@@ -59,7 +65,7 @@ const featuredDestinationsData: Destination[] = [
     description:
       "Rasakan kebebasan terbang di atas kaldera paling ikonik di Indonesia.",
     image:
-      "https://images.unsplash.com/photo-1542456381-8079a40954b9?auto=format&fit=crop&w=600&q=80",
+      "https://i.pinimg.com/736x/a2/0b/5c/a20b5c00ac7e0e128350aa4380a976d8.jpg",
   },
   {
     id: 2,
@@ -68,7 +74,7 @@ const featuredDestinationsData: Destination[] = [
     description:
       "Susuri arsitektur bersejarah dan hiruk pikuk kota tanpa harus berada di sana.",
     image:
-      "https://i.pinimg.com/736x/af/9d/8d/af9d8ddd1c4ea3e8f121bc5306aa4732.jpg",
+      "https://asset.kompas.com/crops/21QAQQA2r75BSzFFzJpwNHeIVe0=/43x0:895x568/750x500/data/photo/2023/09/27/6513a179e3201.jpg",
   },
   {
     id: 3,
@@ -77,7 +83,7 @@ const featuredDestinationsData: Destination[] = [
     description:
       "Jelajahi keindahan biota laut dan terumbu karang yang menakjubkan secara langsung.",
     image:
-      "https://images.unsplash.com/photo-1542456381-8079a40954b9?auto=format&fit=crop&w=600&q=80",
+      "https://i.pinimg.com/1200x/ec/6c/44/ec6c44dddc98ad1bc6b199c1c6331720.jpg",
   },
 ];
 

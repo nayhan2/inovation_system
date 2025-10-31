@@ -3,7 +3,7 @@
 import { Variants } from "framer-motion";
 import { JSX } from "react";
 
-export type SolutionKey = "drone" | "robot" | "humanoid";
+export type SolutionKey = "drone" | "robot" | "humanoid" | "vr";
 
 export interface Solution {
   title: string;

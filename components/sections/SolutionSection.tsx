@@ -32,6 +32,7 @@ export function SolutionSection({ solutions, activeTab, setActiveTab }: Props) {
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >
+            {tab === "vr" && "Visual Pro ✈️"}
             {tab === "drone" && "Drone ✈️"}
             {tab === "robot" && "Robot Roda 🤖"}
             {tab === "humanoid" && "Humanoid 🦾"}

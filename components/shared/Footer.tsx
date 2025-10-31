@@ -15,7 +15,7 @@ export function Footer() {
           href="#"
           className="text-2xl font-bold text-white mb-6 inline-block"
         >
-          Intelecta
+          Meta Tourism Tele Presence
         </a>
         <p className="italic mb-8 text-gray-500">
           "We were born in this world, so why don't we enjoy this world."

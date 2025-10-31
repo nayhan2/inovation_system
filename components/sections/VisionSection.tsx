@@ -22,14 +22,14 @@ export function VisionSection() {
           variants={itemVariants}
           className="text-3xl md:text-4xl font-bold mb-6"
         >
-          Memetakan Masa Depan Interaksi Manusia.
+          Participate in Born of the Future
         </motion.h2>
         <motion.blockquote
           variants={itemVariants}
           className="italic text-lg max-w-4xl mx-auto text-gray-300 mb-12 font-light"
         >
           "Misi kami bukan hanya membangun platform, tapi melahirkan masa depan.
-          Intelecta akan membawa Indonesia ke panggung dunia sebagai pemimpin
+          Meta Tourism Tele Presence akan membawa Indonesia ke panggung dunia sebagai pemimpin
           revolusi tele-presence, mendefinisikan ulang cara kita terhubung,
           berwisata, dan merasakan empati."
         </motion.blockquote>

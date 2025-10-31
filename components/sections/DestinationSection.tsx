@@ -16,10 +16,7 @@ export function DestinationSection({ destinations }: Props) {
         viewport={{ once: true, amount: 0.3 }}
         variants={containerVariants}
       >
-        <motion.h2
-          variants={itemVariants}
-          className="text-3xl font-bold mb-4"
-        >
+        <motion.h2 variants={itemVariants} className="text-3xl font-bold mb-4">
           Rasakan Ketenangan dari Destinasi Pilihan Dunia.
         </motion.h2>
         <motion.p
@@ -57,7 +54,8 @@ export function DestinationSection({ destinations }: Props) {
                   initial="rest"
                   whileHover="hover"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-end p-4">
+           
+                <div className="absolute inset-0 bg-opacity-30 flex items-end p-4">
                   <span className="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
                     {destin.type}
                   </span>
