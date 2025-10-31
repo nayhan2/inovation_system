@@ -33,7 +33,7 @@ export function Footer() {
           <a href="#" className="hover:text-white transition-colors">
             Menjadi Host
           </a>
-          <a href="#" className="hover:text-white transition-colors">
+          <a href="https://wa.me/6282122911460" className="hover:text-white transition-colors">
             Kontak
           </a>
         </div>
