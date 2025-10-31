@@ -29,7 +29,18 @@ export interface ProblemItem {
   title: string;
   text: string;
 }
-
+export const fadeInVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1, 
+    transition: { 
+      duration: 0.8, 
+      ease: [0.4, 0.0, 0.2, 1] 
+    } 
+  },
+};
 export const containerVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -44,7 +55,7 @@ export const containerVariants: Variants = {
 
 export const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
 export interface HowItWorksStep {
@@ -52,4 +63,3 @@ export interface HowItWorksStep {
   title: string;
   text: string;
 }
-

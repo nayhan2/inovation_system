@@ -49,13 +49,13 @@ export function HeroSection() {
       >
         <motion.h1
           variants={itemVariants}
-          className="text-4xl md:text-5xl font-bold mb-4 text-white"
+          className="text-3xl md:text-5xl font-bold mb-4 text-white"
         >
           Jelajahi Dunia Nyata, Langsung dari Genggaman Anda.
         </motion.h1>
         <motion.p
           variants={itemVariants}
-          className="text-lg text-gray-400 mb-8"
+          className="md:text-lg text-gray-400 mb-8"
         >
           Lelah dengan rutinitas?{" "}
           <span className="font-semibold text-blue-600">

@@ -153,6 +153,7 @@ export default function HomePage() {
   return (
     <main className="bg-white text-gray-800">
       {/* <ScrollProgressBar /> */}
+      
       <HeroSection />
       <ProblemSection data={problemData} />
       <HowItWorksSection steps={howItWorksSteps} />

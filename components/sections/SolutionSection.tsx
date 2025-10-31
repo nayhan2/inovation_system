@@ -1,4 +1,4 @@
-// src/components/sections/SolutionSection.tsx
+// src/components/sections/SolutionSection.tsx (DENGAN ANIMASI GAMBAR)
 import { motion, AnimatePresence } from "framer-motion";
 import { Solution, SolutionKey } from "../types";
 
@@ -50,13 +50,22 @@ export function SolutionSection({ solutions, activeTab, setActiveTab }: Props) {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex flex-col md:flex-row items-center justify-center md:gap-12 gap-8 w-full"
           >
-            <div className="flex-1 max-w-md">
+            {/* TAMBAHKAN ANIMASI KHUSUS UNTUK GAMBAR */}
+            <motion.div
+              className="flex-1 max-w-md"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
               <img
                 src={current.image}
                 alt={current.title}
                 className="rounded-xl shadow-lg w-full h-[280px] object-cover object-center"
               />
-            </div>
+            </motion.div>
+            {/* AKHIR ANIMASI GAMBAR */}
+            
             <div className="text-left flex-1 max-w-md md:px-0 px-4">
               <h3 className="text-2xl font-bold mb-3 text-blue-700">
                 {current.title}
