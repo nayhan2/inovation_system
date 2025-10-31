@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ["latin"], weight: ["700", "900"] });
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata = {
-  title: "Intelecta - Demo Website",
+  title: "Meta Tourism Tele Presence by Kühl",
   description: "Platform Meta-Tourism Real-Time pertama di dunia",
 };
 
