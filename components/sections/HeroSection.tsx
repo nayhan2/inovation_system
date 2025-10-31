@@ -31,7 +31,7 @@ export function HeroSection() {
           className="text-lg text-gray-400 mb-8"
         >
           Lelah dengan rutinitas?{" "}
-          <span className="font-semibold text-blue-600">Meta Tourism Tele Presence</span> adalah
+          <span className="font-semibold text-blue-600">Meta Tourism Tele Presence by Kühl</span> adalah
           gerbang Anda untuk merasakan deburan ombak, puncak gunung, dan hiruk
           pikuk kota secara <i>real-time</i>. Kami hadir untuk memberi Anda jeda
           dan ketenangan, kapan pun Anda butuh.
