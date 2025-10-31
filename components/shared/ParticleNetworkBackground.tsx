@@ -1,4 +1,5 @@
-// src/components/shared/ParticleNetworkBackground.tsx
+// src/components/shared/ParticleNetworkBackground.tsx (VERSI PARTIKEL KE ATAS)
+
 import React, { useRef, useEffect } from 'react';
 
 type MouseState = { x: number | null; y: number | null; radius: number };
@@ -46,13 +47,19 @@ class Particle {
 
   update() {
     if (!this.canvas) return;
+    // --- PERUBAHAN #1: ATUR ULANG PARTIKEL SAAT KELUAR LAYAR ATAS ---
+    // Jika partikel melewati batas atas, pindahkan ke bawah dengan posisi X acak.
+    if (this.y < -this.size) {
+      this.y = this.canvas.height + this.size;
+      this.x = Math.random() * this.canvas.width;
+    }
+
+    // Biarkan partikel memantul di sisi kiri dan kanan
     if (this.x > this.canvas.width || this.x < 0) {
       this.directionX = -this.directionX;
     }
-    if (this.y > this.canvas.height || this.y < 0) {
-      this.directionY = -this.directionY;
-    }
 
+    // Logika interaksi mouse tetap sama...
     if (this.mouse.x !== null && this.mouse.y !== null) {
       const dx = this.mouse.x - this.x;
       const dy = this.mouse.y - this.y;
@@ -83,26 +90,23 @@ export function ParticleNetworkBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    // ... (kode di dalam useEffect sebagian besar tetap sama)
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-
-  let animationFrameId = 0;
-  let isResizing = false; // <-- KUNCI PERBAIKAN
-
-  // Sesuaikan warna partikel dan garis di sini
-  const particleColor = 'rgba(255, 255, 255, 0.5)';
-
+    
+    // ... (kode lainnya tetap sama)
+    let animationFrameId = 0;
+    let isResizing = false;
+    const particleColor = 'rgba(255, 255, 255, 0.5)';
     const mouse = {
-      x: null as number | null,
-      y: null as number | null,
-      radius: 100 
+        x: null as number | null,
+        y: null as number | null,
+        radius: 100 
     };
-
     const handleMouseMove = (event: MouseEvent) => {
-      // set mouse coordinates relative to the canvas so interaction is correct
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
       mouse.x = event.clientX - rect.left;
@@ -110,7 +114,6 @@ export function ParticleNetworkBackground() {
     };
     window.addEventListener('mousemove', handleMouseMove);
 
-    // array particles dibuat setelah kelas tersedia (menggunakan class di module scope)
     let particlesArray: Particle[] = [];
 
     function init() {
@@ -124,84 +127,62 @@ export function ParticleNetworkBackground() {
         const x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
         const y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
         const directionX = (Math.random() * 0.4) - 0.2;
-        const directionY = (Math.random() * 0.4) - 0.2;
+        // --- PERUBAHAN #2: PASTIKAN SEMUA PARTIKEL BERGERAK KE ATAS ---
+        // Nilai directionY akan selalu negatif (antara -0.1 dan -0.6)
+        const directionY = (Math.random() * -0.5) - 0.1;
 
         particlesArray.push(new Particle(x, y, directionX, directionY, size, ctx!, canvas, mouse, particleColor));
       }
     }
 
+    // ... (sisa kode seperti `connect`, `animate`, `handleResize` tetap sama persis)
     function connect() {
-      if (!ctx) return;
-      for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a + 1; b < particlesArray.length; b++) {
-
-          const pa = particlesArray[a];
-          const pb = particlesArray[b];
-          if (!pa || !pb) continue;
-
-          const distance = ((pa.x - pb.x) * (pa.x - pb.x)) + ((pa.y - pb.y) * (pa.y - pb.y));
-
-          if (distance < (150 * 150)) {
-            const opacityValue = 1 - (distance / (150 * 150));
-            const [r, g, b] = [255, 255, 255];
-            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacityValue * 0.2})`;
-
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(pa.x, pa.y);
-            ctx.lineTo(pb.x, pb.y);
-            ctx.stroke();
-          }
+        if (!ctx) return;
+        for (let a = 0; a < particlesArray.length; a++) {
+            for (let b = a + 1; b < particlesArray.length; b++) {
+                const pa = particlesArray[a];
+                const pb = particlesArray[b];
+                if (!pa || !pb) continue;
+                const distance = ((pa.x - pb.x) * (pa.x - pb.x)) + ((pa.y - pb.y) * (pa.y - pb.y));
+                if (distance < (150 * 150)) {
+                    const opacityValue = 1 - (distance / (150 * 150));
+                    const [r, g, b] = [255, 255, 255];
+                    ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacityValue * 0.2})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(pa.x, pa.y);
+                    ctx.lineTo(pb.x, pb.y);
+                    ctx.stroke();
+                }
+            }
         }
-      }
     }
-
     function animate() {
-      // --- PERBAIKAN DI SINI ---
-      // Jika 'isResizing' true, jangan jalankan frame ini.
-      // 'handleResize' akan memanggil 'animate' baru setelah selesai.
-      if (isResizing) return; 
-
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      for (let i = 0; i < particlesArray.length; i++) {
-        if(particlesArray[i]) {
-          particlesArray[i].update();
+        if (isResizing) return; 
+        if (!ctx || !canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particlesArray.length; i++) {
+            if(particlesArray[i]) {
+                particlesArray[i].update();
+            }
         }
-      }
-      connect();
-      animationFrameId = requestAnimationFrame(animate);
+        connect();
+        animationFrameId = requestAnimationFrame(animate);
     }
-
-    // --- PERBAIKAN DI SINI ---
     const handleResize = () => {
-      if (!canvas || !ctx) return;
-
-      // 1. Set flag untuk MENGHENTIKAN frame yang sedang berjalan
-      isResizing = true; 
-
-      // 2. Hentikan frame BERIKUTNYA
-      cancelAnimationFrame(animationFrameId);
-
-      // 3. Atur ulang ukuran canvas
-      canvas.width = window.innerWidth;
-      canvas.height = canvas.parentElement?.offsetHeight || window.innerHeight;
-
-      // 4. Buat ulang partikel
-      init(); 
-
-      // 5. Reset flag dan mulai lagi loop animasi
-      isResizing = false; 
-      animate();
+        if (!canvas || !ctx) return;
+        isResizing = true; 
+        cancelAnimationFrame(animationFrameId);
+        canvas.width = window.innerWidth;
+        canvas.height = canvas.parentElement?.offsetHeight || window.innerHeight;
+        init(); 
+        isResizing = false; 
+        animate();
     };
     
-    // --- Inisialisasi dan Cleanup ---
     canvas.width = window.innerWidth;
     canvas.height = canvas.parentElement?.offsetHeight || window.innerHeight;
-    
     window.addEventListener('resize', handleResize);
-
     init();
     animate();
 

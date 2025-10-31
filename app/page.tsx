@@ -25,6 +25,7 @@ import { BusinessModelSection } from "@/components/sections/BusinessModelSection
 import { FAQSection } from "@/components/sections/FAQSection";
 import { VisionSection } from "@/components/sections/VisionSection";
 import { Footer } from "@/components/shared/Footer";
+import { ScrollProgressBar } from "@/components/shared/ScrollProgressBar";
 
 // =========================================================================
 // DATA
@@ -151,6 +152,7 @@ export default function HomePage() {
 
   return (
     <main className="bg-white text-gray-800">
+      {/* <ScrollProgressBar /> */}
       <HeroSection />
       <ProblemSection data={problemData} />
       <HowItWorksSection steps={howItWorksSteps} />
