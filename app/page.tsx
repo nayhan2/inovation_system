@@ -68,7 +68,7 @@ const featuredDestinationsData: Destination[] = [
     description:
       "Susuri arsitektur bersejarah dan hiruk pikuk kota tanpa harus berada di sana.",
     image:
-      "https://images.unsplash.com/photo-1581451000632-132d43e597c5?auto=format&fit=crop&w=600&q=80",
+      "https://i.pinimg.com/736x/af/9d/8d/af9d8ddd1c4ea3e8f121bc5306aa4732.jpg",
   },
   {
     id: 3,
@@ -77,7 +77,7 @@ const featuredDestinationsData: Destination[] = [
     description:
       "Jelajahi keindahan biota laut dan terumbu karang yang menakjubkan secara langsung.",
     image:
-      "https://images.unsplash.com/photo-1620023671295-886f4a2108b5?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1542456381-8079a40954b9?auto=format&fit=crop&w=600&q=80",
   },
 ];
 

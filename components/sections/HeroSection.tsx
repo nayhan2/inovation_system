@@ -1,28 +1,42 @@
 // src/components/sections/HeroSection.tsx
 import { motion } from "framer-motion";
-import { containerVariants, itemVariants } from "../types";
+// Pastikan Anda memiliki file types.ts ini:
+import { containerVariants, itemVariants } from "../types"; 
+import { ParticleNetworkBackground } from "../shared/ParticleNetworkBackground"; 
 
 export function HeroSection() {
   return (
-    <header className="relative flex flex-col items-center justify-center text-center py-24 px-6 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    // Atur background menjadi sangat gelap (bg-gray-950)
+    // Tambahkan `relative` untuk positioning absolut Partikel
+    // Tambahkan `overflow-hidden` agar partikel tidak melebihi batas
+    <header className="relative flex flex-col items-center justify-center text-center py-24 px-6 bg-gray-950 text-white overflow-hidden min-h-[70vh]">
+      
+      {/* 1. Komponen Particle Network (Z-index 0) */}
+      <ParticleNetworkBackground /> 
+      
+      {/* 2. Dark Overlay (Opsional) - Z-index 1 */}
+      {/* Overlay ini membantu meredupkan partikel di atas agar teks lebih kontras */}
+      <div className="absolute z-[1] w-full h-full bg-gray-950 opacity-20 pointer-events-none"></div> 
+      
+      {/* Konten Hero Section (Z-index 20) */}
       <motion.div
-        className="relative z-10 max-w-3xl"
+        className="relative z-20 max-w-3xl"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.h1
           variants={itemVariants}
-          className="text-4xl md:text-5xl font-bold mb-4"
+          className="text-4xl md:text-5xl font-bold mb-4 text-white" 
         >
           Jelajahi Dunia Nyata, Langsung dari Genggaman Anda.
         </motion.h1>
         <motion.p
           variants={itemVariants}
-          className="text-lg text-gray-600 mb-8"
+          className="text-lg text-gray-400 mb-8" 
         >
           Lelah dengan rutinitas?{" "}
-          <span className="font-semibold text-blue-600">Intelecta</span> adalah
+          <span className="font-semibold text-blue-400">Intelecta</span> adalah
           gerbang Anda untuk merasakan deburan ombak, puncak gunung, dan hiruk
           pikuk kota secara <i>real-time</i>. Kami hadir untuk memberi Anda jeda
           dan ketenangan, kapan pun Anda butuh.
@@ -41,7 +55,7 @@ export function HeroSection() {
           </motion.a>
           <motion.a
             href="#destinations"
-            className="border border-blue-600 text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition"
+            className="border border-blue-400 text-blue-400 px-8 py-3 rounded-xl font-semibold hover:bg-blue-900 transition" 
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
