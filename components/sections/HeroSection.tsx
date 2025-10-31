@@ -40,21 +40,72 @@ export function HeroSection() {
           variants={itemVariants}
           className="flex flex-col sm:flex-row justify-center gap-4"
         >
+          {/* TOMBOL UTAMA (EFEK SHADOW PULSE & BACKGROUND SLIDE) */}
           <motion.a
             href="#how-it-works"
-            className="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition shadow-lg hover:shadow-blue-300"
-            whileHover={{ scale: 1.05 }}
+            className="
+              relative 
+              bg-blue-600 text-white 
+              px-8 py-3 rounded-xl 
+              font-semibold 
+              overflow-hidden 
+              transition-colors duration-300
+              shadow-lg shadow-blue-600/50 
+              group /* Menambahkan group untuk hover pada child */
+            "
+            whileHover={{ scale: 1.05 }} // Sedikit scale-up
             transition={{ type: "spring", stiffness: 300 }}
           >
-            Lihat Cara Kerjanya
+            {/* Overlay untuk efek background slide-in */}
+            <span 
+              className="
+                absolute inset-0 
+                bg-blue-700 
+                transform -translate-x-full 
+                group-hover:translate-x-0 
+                transition-transform duration-500 ease-out 
+                z-0
+              "
+            ></span>
+            {/* Teks Tombol (Pastikan di atas overlay dengan z-index) */}
+            <span className="relative z-10">
+              Lihat Cara Kerjanya
+            </span>
+            {/* Efek Shadow Pulse pada hover - Tailwind JIT membuat ini otomatis */}
           </motion.a>
+
+          {/* TOMBOL KEDUA (EFEK BORDER GLOW & TEXT HIGHLIGHT) */}
           <motion.a
             href="#destinations"
-            className="border border-blue-400 text-blue-400 px-8 py-3 rounded-xl font-semibold hover:bg-blue-900 transition"
-            whileHover={{ scale: 1.05 }}
+            // UBAH: Tambahkan relative, hover:text-white, group, dan border-2
+            className="
+              relative 
+              border-2 border-blue-500 
+              text-blue-400 
+              px-8 py-3 rounded-xl 
+              font-semibold 
+              overflow-hidden
+              hover:text-white /* Perubahan warna teks pada hover */
+              transition-colors duration-300 
+              group /* Menambahkan group untuk hover pada child */
+            "
+            whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)" }} // Border Glow
             transition={{ type: "spring", stiffness: 300 }}
           >
-            Jelajahi Masa Depan
+            {/* Overlay untuk efek background fill/fade dari border */}
+             <span 
+              className="
+                absolute inset-0 
+                bg-blue-900/50 /* Sedikit transparansi */
+                opacity-0 
+                group-hover:opacity-100 
+                transition-opacity duration-300 ease-in
+              "
+            ></span>
+            {/* Teks Tombol */}
+            <span className="relative z-10">
+              Jelajahi Masa Depan
+            </span>
           </motion.a>
         </motion.div>
       </motion.div>

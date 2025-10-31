@@ -1,8 +1,7 @@
 import "./globals.css";
-import { Inter, Roboto } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"], weight: ["700", "900"] });
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
+const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400", "500", "600","700", "900"] });
 
 export const metadata = {
   title: "Meta Tourism Tele Presence by Kühl",
@@ -18,7 +17,7 @@ export default function RootLayout({
     <html lang="id">
       <body
         suppressHydrationWarning={true}
-        className={`${roboto.className} bg-[#0A192F] text-white`}
+        className={`${poppins.className} bg-[#0A192F] text-white`}
       >
         {children}
       </body>
