@@ -13,7 +13,7 @@ export function BusinessModelSection() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-gray-50 text-center">
+<section className="py-24 md:py-0 px-6 bg-gray-50 text-center md:h-screen flex flex-col justify-center">
       <motion.div
         initial="hidden"
         whileInView="visible"

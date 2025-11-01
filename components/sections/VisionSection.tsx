@@ -21,8 +21,8 @@ export function VisionSection() {
   return (
     <section
       ref={ref}
-      // UBAH: Hapus `style` dan tambahkan `relative overflow-hidden`
-      className="relative py-24 px-6 text-center text-white bg-gray-900 overflow-hidden"
+      // UBAH BARIS INI
+      className="relative py-24 md:py-0 px-6 text-center text-white bg-gray-900 overflow-hidden md:h-[90vh] flex flex-col justify-center"
     >
       {/* 5. BUAT ELEMEN BARU UNTUK BACKGROUND YANG BERGERAK */}
       <motion.div

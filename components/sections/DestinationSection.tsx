@@ -49,7 +49,10 @@ export function DestinationSection({ destinations }: Props) {
   // ... (kode lainnya tetap sama)
 
   return (
-    <section id="destinations" className="py-20 px-6 bg-white text-center">
+    <section
+      id="destinations"
+      className="py-20 md:py-0 px-6 bg-white text-center md:h-screen flex flex-col justify-center"
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"
