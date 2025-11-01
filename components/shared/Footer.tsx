@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-// src/components/shared/Footer.tsx
 import { motion } from "framer-motion";
 
 export function Footer() {
@@ -33,7 +32,10 @@ export function Footer() {
           <a href="#" className="hover:text-white transition-colors">
             Menjadi Host
           </a>
-          <a href="https://wa.me/6282122911460" className="hover:text-white transition-colors">
+          <a
+            href="https://wa.me/6282122911460"
+            className="hover:text-white transition-colors"
+          >
             Kontak
           </a>
         </div>
