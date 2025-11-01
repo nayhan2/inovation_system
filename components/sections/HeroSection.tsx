@@ -51,7 +51,7 @@ export function HeroSection() {
           variants={itemVariants}
           className="text-3xl md:text-5xl font-bold mb-4 text-white"
         >
-          Jelajahi Dunia Nyata, Langsung dari Genggaman Anda.
+          Jelajahi Dunia Nyata, Langsung dari Genggaman Anda. yes king
         </motion.h1>
         <motion.p
           variants={itemVariants}
