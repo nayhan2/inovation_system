@@ -6,6 +6,9 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["100", "200", "300", "400
 export const metadata = {
   title: "Meta Tourism Tele Presence by Kühl",
   description: "Platform Meta-Tourism Real-Time pertama di dunia",
+  icons: {
+    icon: "/image-removebg-preview.png",
+  },
 };
 
 export default function RootLayout({
