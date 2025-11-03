@@ -8,7 +8,12 @@ interface Props {
 
 export function HowItWorksSection({ steps }: Props) {
   return (
-    <section id="how-it-works" className="py-20 px-6 bg-white text-center">
+    // TAMBAH: md:h-screen, flex, flex-col, justify-center
+    // UBAH: py-20 menjadi py-20 md:py-0
+    <section
+      id="how-it-works"
+      className="py-20 md:py-0 px-6 bg-white text-center md:h-screen flex flex-col justify-center"
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -17,7 +22,7 @@ export function HowItWorksSection({ steps }: Props) {
       >
         <motion.h2
           variants={itemVariants}
-          className="text-3xl font-bold mb-4"
+          className="text-3xl md:text-4xl font-bold mb-4" // UBAH: text-3xl -> text-3xl md:text-4xl
         >
           Sangat Mudah. Hanya 3 Langkah untuk Mencapai Ketenangan.
         </motion.h2>
@@ -29,11 +34,12 @@ export function HowItWorksSection({ steps }: Props) {
           melalui browser Anda.
         </motion.p>
 
-        <div className="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto relative">
+        {/* TAMBAH: gap-8 md:gap-0 untuk spasi di mobile */}
+        <div className="flex flex-col md:flex-row items-center justify-center max-w-6xl mx-auto relative gap-8 md:gap-0">
           {/* Animasi Garis Penghubung (Hanya untuk tampilan desktop) */}
           <motion.div
-            className="hidden md:block absolute top-10 w-full h-1"
-            style={{ padding: "0 10rem" }}
+            // UBAH: Hapus 'style', ganti dengan 'px-40'
+            className="hidden md:block absolute top-10 w-full h-1 px-40"
           >
             <motion.svg
               width="100%"
@@ -64,7 +70,8 @@ export function HowItWorksSection({ steps }: Props) {
               variants={itemVariants}
               className="flex flex-col items-center text-center p-6 md:w-1/3 z-10 bg-white"
             >
-              <div className="bg-blue-100 p-6 rounded-full shadow-lg border-4 border-white mb-4">
+              {/* TAMBAH: Efek hover */}
+              <div className="bg-blue-100 p-6 rounded-full shadow-lg border-4 border-white mb-4 transition-all duration-300 transform hover:scale-110">
                 {step.icon}
               </div>
               <h3 className="text-xl font-bold mb-2">{step.title}</h3>

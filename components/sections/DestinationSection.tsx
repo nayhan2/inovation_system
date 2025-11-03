@@ -1,9 +1,11 @@
 // src/components/sections/DestinationSection.tsx
+"use client"; // <--- TAMBAHKAN BARIS INI
+
 /* eslint-disable react-hooks/rules-of-hooks */
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { FiMapPin } from "react-icons/fi";
 import { Destination, containerVariants, itemVariants } from "../types";
-import Link from "next/link"; // UBAH: Import Link dari next/link
+import Link from "next/link";
 
 interface Props {
   destinations: Destination[];
@@ -44,7 +46,10 @@ const useTilt = (isHovering: boolean) => {
 
 export function DestinationSection({ destinations }: Props) {
   return (
-    <section id="destinations" className="py-20 px-6 bg-white text-center">
+    <section
+      id="destinations"
+      className="py-20 md:py-0 px-6 bg-white text-center md:h-screen flex flex-col justify-center"
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -117,16 +122,13 @@ export function DestinationSection({ destinations }: Props) {
                     <FiMapPin className="text-blue-500 mr-2" /> {destin.name}
                   </h3>
                   <p className="text-gray-600 mb-4">{destin.description}</p>
-                  
-                  {/* --- INI PERUBAHANNYA --- */}
+
                   <Link
-                    href={`/explore/${destin.id}`} // UBAH: Gunakan Link dan ID destinasi
+                    href={`/explore/${destin.id}`} // Path ini sudah benar
                     className="text-blue-600 font-semibold hover:text-blue-800 transition-colors"
                   >
                     Jelajahi Sekarang &rarr;
                   </Link>
-                  {/* --- AKHIR PERUBAHAN --- */}
-                  
                 </div>
               </motion.div>
             );

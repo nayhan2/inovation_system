@@ -60,7 +60,7 @@ const solutionsData: Record<SolutionKey, Solution> = {
 
 const featuredDestinationsData: Destination[] = [
   {
-    id: 1,
+    id: "gunung-rinjani",
     name: "Puncak Gunung Rinjani",
     type: "Drone 4K",
     description:
@@ -69,7 +69,7 @@ const featuredDestinationsData: Destination[] = [
       "https://i.pinimg.com/736x/a2/0b/5c/a20b5c00ac7e0e128350aa4380a976d8.jpg",
   },
   {
-    id: 2,
+    id: "kota-tua-jakarta",
     name: "Jalanan Kota Tua Jakarta",
     type: "Robot Roda Interaktif",
     description:
@@ -78,7 +78,7 @@ const featuredDestinationsData: Destination[] = [
       "https://asset.kompas.com/crops/21QAQQA2r75BSzFFzJpwNHeIVe0=/43x0:895x568/750x500/data/photo/2023/09/27/6513a179e3201.jpg",
   },
   {
-    id: 3,
+    id: "raja-ampat",
     name: "Pantai Raja Ampat",
     type: "Drone Bawah Air",
     description:

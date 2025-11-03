@@ -12,7 +12,7 @@ export interface Solution {
 }
 
 export interface Destination {
-  id: number;
+  id: string;
   name: string;
   type: string;
   description: string;

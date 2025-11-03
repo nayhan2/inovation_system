@@ -25,7 +25,10 @@ const formatAnswer = (text: string): string => {
 
 export function FAQSection({ data, openFaq, toggleFaq }: Props) {
   return (
-    <section id="faq" className="py-20 px-6 bg-white">
+    <section
+      id="faq"
+      className="py-20 md:py-0 px-6 bg-white md:h-screen flex flex-col justify-center"
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"

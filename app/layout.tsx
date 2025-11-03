@@ -7,7 +7,7 @@ export const metadata = {
   title: "Meta Tourism Tele Presence by Kühl",
   description: "Platform Meta-Tourism Real-Time pertama di dunia",
   icons: {
-    icon: '/eweewewe.jpeg', // Path ke ikon Anda (bisa di public/)
+    icon: "/image-removebg-preview.png",
   },
 };
 

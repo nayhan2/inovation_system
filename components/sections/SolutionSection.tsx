@@ -12,7 +12,7 @@ export function SolutionSection({ solutions, activeTab, setActiveTab }: Props) {
   const current = solutions[activeTab];
 
   return (
-    <section className="py-20 px-6 bg-gray-50 text-center">
+    <section className="py-20 md:py-0 px-6 bg-gray-50 text-center md:h-screen flex flex-col justify-center">
       <h2 className="text-3xl font-bold mb-4">
         Teknologi yang Menyatukan Dunia Anda.
       </h2>

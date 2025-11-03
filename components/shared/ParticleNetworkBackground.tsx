@@ -143,7 +143,7 @@ export function ParticleNetworkBackground() {
       
       // PENINGKATAN JUMLAH PARTIKEL - Lebih banyak dari sebelumnya
       let numberOfParticles = (canvas.height * canvas.width) / 5000; // Dari 9000 ke 5000
-      if (numberOfParticles > 200) numberOfParticles = 150; // Maksimal 200 (dari 100)
+      if (numberOfParticles > 200) numberOfParticles = 160; // Maksimal 200 (dari 100)
 
       for (let i = 0; i < numberOfParticles; i++) {
         const size = (Math.random() * 2.5) + 0.5; // Variasi ukuran lebih besar
